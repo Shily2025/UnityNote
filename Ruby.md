@@ -267,3 +267,126 @@ Sprite Sort Mode 要修改为Pivot否则层级排序不生效
   **为了保持玩家和敌人接触时依然有互相推挤的效果，不能设置敌人的碰撞体的IsTrigger属性为true，否则玩家会穿过敌人，OnTriggerEnter2D是碰撞体IsTrigger为True时触发的，此时不能使用OnTriggerEnter2D来处理玩家和敌人的碰撞，可以使用刚体碰撞的事件OnCollisionEnter2D来处理，要注意的是，与OnTriggerEnter2D不同不能直接从传入的Collision中GetComponent，因为它不是一个GameObject，要先获取其GameObject，再获取Component**
   
 ![](Asset/Ruby/2025-11-26-00-00-37.png)
+
+# 动画
+
+## 敌人
+
+- 进入Robot的预制体，添加Animator组件，在Assets/Animations中创建Animation Controller，命名为Robot，给Animator添加这个Animation Controller
+
+![](Asset/Ruby/2025-11-26-12-42-25.png)
+
+![](Asset/Ruby/2025-11-26-12-43-18.png)
+
+- 创建Animation
+
+![](Asset/Ruby/2025-11-26-12-46-27.png)
+
+- 点击Robot预制体，创建向左走的动画，保存为RobotLeft
+  
+![](Asset/Ruby/2025-11-26-12-49-00.png)
+
+- 在资源中找到Robot的动画素材，拖拽到动画中，如果无法拖拽，先选中Robot的预制件
+
+![](Asset/Ruby/2025-11-26-12-51-59.png)
+
+- 设置动画帧率，Samples表示1秒钟刷60帧，把它改成4，否则会很鬼畜，可以点击播放预览
+  
+![](Asset/Ruby/2025-11-26-12-53-38.png)
+
+- 创建向右走的动画RobotRight
+
+![](Asset/Ruby/2025-11-26-12-55-47.png)
+
+- 同样拖拽向左走的素材过来，设置X轴的翻转就能得到向右走的动画
+
+![](Asset/Ruby/2025-11-26-12-57-40.png)
+
+![](Asset/Ruby/2025-11-26-12-58-04.png)
+
+- 添加向上走和向下走的动画，选择对应的素材
+
+- 打开动画师，可以直接打开Assets/Animations中的Robot，也可以选中Robot预制体，再在window中打开
+  
+![](Asset/Ruby/2025-11-26-13-02-07.png)
+
+- 删除掉所有动画，右键空白处创建动画混合树，双击进入BlendTree
+  
+![](Asset/Ruby/2025-11-26-13-06-40.png)
+
+- 创建两个float参数，并在检查器中调用这两个参数，添加动画序列
+  
+![](Asset/Ruby/![](Asset/Ruby/2025-11-26-13-12-11.png).png)
+
+- 在EnemyController中获取Animator组件
+
+![](Asset/Ruby/2025-11-26-13-15-10.png)
+
+- 在FixedUpdate()中设置animator的参数
+
+![](Asset/Ruby/2025-11-26-13-17-33.png)
+
+- 修改BlendTree的名字为Move
+
+## 玩家
+- 动画资源
+
+![](Asset/Ruby/2025-11-26-13-19-45.png)
+
+- Ruby的Animator
+  <!-- todo: -->
+**  使用Trigger而不是Bool，目的是当设置Trigger为true时切换动画，在BlenderTree中设置HasExitTime，在动画播放结束后自动切换回Idle状态，无需等待Trigger变成false？这里要实验确认**
+
+![](Asset/Ruby/2025-11-27-13-39-07.png)
+
+- 声明一个Animator对象，并在Start()中获取
+
+![](Asset/Ruby/2025-11-27-12-51-30.png)
+
+- 受伤的动画
+
+![](Asset/Ruby/2025-11-27-12-53-24.png)
+
+- 在Updata()中切换移动和静止的动画
+ **Mathf.Approximately() 表示比较两个浮点值是否近似相等，浮点值不能通过 == 比较**
+
+![](Asset/Ruby/2025-11-27-12-57-35.png)
+
+## 创建玩家动画
+- Ctrl+6 或者在Window/Animation创建动画剪辑的时候并保存的时候，由于选中的是Ruby，如果在保存路径下没有Ruby的AnimatorController，则会自动创建一个，并将它挂到Ruby的Animator中
+
+![](Asset/Ruby/2025-11-27-13-06-27.png)
+
+- 要创建Ruby的这些动画
+
+![](Asset/Ruby/2025-11-27-13-07-07.png)
+
+- 为了使动画更加流畅，选择60的帧率，但要将每一个动画剪辑的拖拽到指定的帧上，不然一下子就播放完了
+
+![](Asset/Ruby/2025-11-27-13-11-22.png)
+
+- 做hit动画的时候，其实就是让Sprite在显示与不显示之间来回切换，勾选Enable为显示，第5帧的时候取消Enable，第10帧的时候再勾选Enable，实际调整看看效果
+
+![](Asset/Ruby/2025-11-27-13-19-07.png)
+
+- launch动画其实就是在第0和第30帧放同样的动作
+
+![](Asset/Ruby/2025-11-27-13-23-11.png)
+
+- Animator 中 Idle 
+
+![](Asset/Ruby/2025-11-27-13-26-02.png)
+
+- Animator 中 Moving 
+
+![](Asset/Ruby/2025-11-27-13-27-24.png)
+
+- Hit和Launch参考以上
+
+- Hit 可以选择HasExitTime，当播放结束时自动退出回到Idle，就不需要设置回到Idle的条件了
+![](Asset/Ruby/2025-11-27-13-36-57.png)
+
+- 其他BlendTree的切换参数参考
+
+![](Asset/Ruby/2025-11-27-13-33-45.png)
+
