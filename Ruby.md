@@ -328,6 +328,14 @@ Sprite Sort Mode 要修改为Pivot否则层级排序不生效
 
 - 修改BlendTree的名字为Move
 
+- 添加修复的动画
+
+![](Asset/Ruby/2025-12-09-13-07-11.png)
+
+- 触发进入修复
+
+![](Asset/Ruby/2025-12-09-13-09-12.png)
+
 ## 玩家
 - 动画资源
 
@@ -461,7 +469,7 @@ Sprite Sort Mode 要修改为Pivot否则层级排序不生效
 
 - EnemyController中创建修复机器人的方法
 
-![](Asset/Ruby/2025-12-05-23-54-18.png)
+![](Asset/Ruby/2025-12-09-13-11-03.png)
 
 - 在飞弹的脚本中，碰撞触发时获取机器人并修复
 
@@ -471,3 +479,59 @@ Sprite Sort Mode 要修改为Pivot否则层级排序不生效
 - 在子弹的脚本中
 
 ![](Asset/Ruby/2025-12-05-23-59-21.png)
+
+# 镜头控制
+## Cinemachine
+- 安装插件
+  
+![](Asset/Ruby/2025-12-09-12-39-58.png)
+
+ - 添加Cinemachine，摄像机支持以下两种模式
+  透视模式 perspective：有近大远小的3D效果
+  正交模式 orthographic：远近都一样大的2D效果
+  
+![](Asset/Ruby/2025-12-09-12-42-02.png)
+
+- 将Rybu拖拽到Cinemachine的跟随目标
+
+![](Asset/Ruby/2025-12-09-12-50-16.png)
+
+- 设置摄像机的边界，给Cinemachine添加扩展组件，2D碰撞体
+
+![](Asset/Ruby/2025-12-09-12-53-39.png)
+
+- 添加一个EmptyObject，给它添加多边形碰撞体，并将碰撞体的边界设定在地图边界
+  注意：必须是多变体碰撞体，否则对Cinemachine无效
+
+  ![](Asset/Ruby/2025-12-09-12-59-02.png)
+
+  ![](Asset/Ruby/2025-12-09-12-57-55.png)
+
+  - 将空气墙拖到Cinemachine的边界属性上
+  
+  ![](Asset/Ruby/2025-12-09-13-00-45.png)
+
+  - 修改空气墙碰撞体的layer，并设置它和任何层都不碰撞防止把玩家挤出去
+
+![](Asset/Ruby/2025-12-09-13-02-34.png)
+
+![](Asset/Ruby/2025-12-09-13-04-32.png)
+
+# 粒子系统
+## 准备素材
+- 分割素材
+
+![](Asset/Ruby/2025-12-09-13-18-51.png)
+
+![](Asset/Ruby/2025-12-09-13-19-39.png)
+
+## 添加粒子
+- 新建粒子
+
+![](Asset/Ruby/2025-12-09-13-21-19.png)
+
+![](Asset/Ruby/2025-12-09-13-20-53.png)
+
+- 替换素材s
+
+![](Asset/Ruby/2025-12-09-13-23-26.png)
