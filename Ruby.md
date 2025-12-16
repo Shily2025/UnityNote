@@ -756,3 +756,28 @@ FrameOverTime 设置为0时，飘的过程中将不会转换
 - 赋值TMP对象
 
 ![](Asset/Ruby/2025-12-12-13-06-49.png)
+
+
+- 设置音频为3D时，可设置音频范围以及衰减效果
+
+![](Asset/Ruby/2025-12-16-12-46-46.png)
+
+- 因为MainCamera的z轴默认是-10，吧AudioListener挂在MainCamera上，可能达不到音频的播放范围，所以在摄像机上添加一个空对象，将AudioListener挂在空对象上，并将空对象的z轴设为10，来抵消MainCamera的-10
+
+![](Asset/Ruby/2025-12-16-12-52-44.png)
+
+# 发布
+- 设置游戏信息
+
+![](Asset/Ruby/2025-12-16-12-57-27.png)
+
+- 打包
+![](Asset/Ruby/2025-12-16-12-58-23.png)
+
+- 添加关卡
+
+![](Asset/Ruby/2025-12-16-12-59-15.png)
+
+- 操作系统支持
+  在UnityHub中添加相关操作系统的支持，BuildAndRun才能点
+![](Asset/Ruby/2025-12-16-12-59-53.png)
