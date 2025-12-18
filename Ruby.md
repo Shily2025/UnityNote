@@ -756,3 +756,39 @@ FrameOverTime 设置为0时，飘的过程中将不会转换
 - 赋值TMP对象
 
 ![](Asset/Ruby/2025-12-12-13-06-49.png)
+
+# 音频
+## 资源
+![](Asset/Ruby/2025-12-13-21-22-50.png)
+
+## 主场景音频
+- 在MainCamera中添加一个AudioListener组件
+
+- 创建一个EmptyObject，添加AudioSource组件，将背景音乐添加到其AudioClip，勾选Loop，设置Spatial成2D（3D的话会根据远近位置呈现立体音效，但背景音乐应该随时一样大）
+
+![](Asset/Ruby/2025-12-13-21-25-01.png)
+
+## Ruby触发音效
+- 使用1对多的策略(1 AudioSource 多 AudioClip)给Ruby添加AudioSource，因为很多音效都是由Ruby触发播放的，进入Ruby的预制体，添加AudioSource组件，取消Player On Awake
+
+![](Asset/Ruby/2025-12-13-21-30-48.png)
+
+- 在RubyController中获取AudioSource对象
+
+![](Asset/Ruby/2025-12-13-22-30-09.png)
+
+![](Asset/Ruby/2025-12-13-22-32-01.png)
+
+- 创建公有方法播放指定音频
+
+![](Asset/Ruby/2025-12-13-23-36-03.png)
+
+- 在血包的脚本中，添加加血的音效
+
+![](Asset/Ruby/2025-12-13-23-35-17.png)
+
+- 在吃血包时播放音效
+
+![](Asset/Ruby/2025-12-13-23-37-10.png)
+
+- 挂接音效到草莓的脚本中
