@@ -122,7 +122,7 @@
 - 设置MainCamera的旋转角度
 ![](Asset/HauntedJaunt/2025-12-18-23-29-28.png)
 
-# 渲染
+# 后期特效
 ## 抗锯齿
 - 添加Layer
 ![](Asset/HauntedJaunt/2025-12-18-23-44-18.png)
@@ -130,3 +130,56 @@
 - 在MainCamera中添加组件，没有的话可以在packageManage中下载
   设置层为上一步添加的层，选择快速，这个模式性能较高，效果一般
 ![](Asset/HauntedJaunt/2025-12-18-23-48-07.png)
+
+## 颜色分级
+- 在Hierarchy中新建一个空对象，将其Layer设置为后期处理层，添加Post-process Volume组件
+![](Asset/HauntedJaunt/2025-12-19-13-04-19.png)
+
+- new 一个 profile,他会保存在Assets中Scene的目录下
+![](Asset/HauntedJaunt/2025-12-19-12-54-10.png)
+![](Asset/HauntedJaunt/2025-12-19-12-54-47.png)
+
+- 添加 **颜色分级** 效果
+![](Asset/HauntedJaunt/2025-12-19-12-56-40.png)
+
+- 打开 **色调映射**，对比一下开和不开的区别，如果不生效，勾选上Is Global，
+![](Asset/HauntedJaunt/2025-12-19-12-57-34.png)
+
+- **曝光** 设为1
+![](Asset/HauntedJaunt/2025-12-19-12-58-45.png)
+
+- 色调
+  Lift 会影响阴影的颜色
+  Gain 会更改更亮的高光
+  Gamma 涵盖图像颜色中间（或中间范围）的所有内容
+  将Lift 和 Gamma 略微拖向蓝色，Gain略微拖向黄色，增加阴影的深度并增加光照的温暖度
+  ![](Asset/HauntedJaunt/2025-12-19-13-10-49.png)
+
+### 泛光效果
+- 添加Bloom
+![](Asset/HauntedJaunt/2025-12-19-13-05-36.png)
+
+- 点All全部打开
+![](Asset/HauntedJaunt/2025-12-19-13-06-37.png)
+
+- 强度设为2.5，就能看到泛光效果了
+  Intensity 强度
+  Threshold 阈值，表示光强大于这个值的光才能使用泛光效果
+![](Asset/HauntedJaunt/2025-12-19-13-11-51.png)
+  能够看到这个位置泛光效果比较明显
+![](Asset/HauntedJaunt/2025-12-19-13-12-13.png)
+
+### 环境光遮挡
+- 添加效果，打开后阴影会更加明显
+![](Asset/HauntedJaunt/2025-12-19-13-14-11.png)
+
+### 渐晕特效
+- 使屏幕周围出现阴影
+  Intensity 决定阴影效果在屏幕上散步的距离
+  Smoothness 决定这种效果朝着屏幕中心淡入淡出的距离
+![](Asset/HauntedJaunt/2025-12-19-13-16-11.png)
+![](Asset/HauntedJaunt/2025-12-19-13-16-22.png)
+
+### 镜头失真特效
+- 左右滑动Intensity会有一张凸透镜凹透镜的效果
+![](Asset/HauntedJaunt/2025-12-19-13-19-37.png)
