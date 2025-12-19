@@ -183,3 +183,103 @@
 ### 镜头失真特效
 - 左右滑动Intensity会有一张凸透镜凹透镜的效果
 ![](Asset/HauntedJaunt/2025-12-19-13-19-37.png)
+
+# 游戏结束UI
+## 创建UI
+- 在Hierarchy中创建UI->Image，它会自动创建一个Canvas，并在Canvas下创建Image，以及一个EventSystem，用于触发UI显示，暂时用不到，删掉，重命名Canvas
+![](Asset/HauntedJaunt/2025-12-19-21-45-10.png)
+
+- 缩放组件，用不上，为了提高游戏性能，删掉
+![](Asset/HauntedJaunt/2025-12-19-21-43-42.png)
+
+- 交互相关组件，删掉
+![](Asset/HauntedJaunt/2025-12-19-21-44-31.png)
+
+- 切到2D模式，把特效关掉
+![](Asset/HauntedJaunt/2025-12-19-21-46-35.png)
+
+- 设置锚点为0-1，strength中的Top表示到上面那条边的距离，设为0，其他三个同理，使Image填充Canvas
+![](Asset/HauntedJaunt/2025-12-19-21-47-56.png)
+![](Asset/HauntedJaunt/2025-12-19-21-49-19.png)
+
+- 背景设为黑色
+![](Asset/HauntedJaunt/2025-12-19-21-51-02.png)
+
+- 以上是背景，在背景下再添加一个Image，选择图像，设置锚点和拉伸，使其填充，为保持长宽比例，勾选PreServe Aspect(保留)
+![](Asset/HauntedJaunt/2025-12-19-21-53-45.png)
+
+- 选择背景，添加Canvas Group组件，设置其透明度为0，在游戏结束时再通过代码设置让其显示
+![](Asset/HauntedJaunt/2025-12-19-21-57-10.png)
+
+## 游戏结束逻辑
+- 新建一个EmptyObject，增加碰撞体，勾选IsTrigger，放到出口的位置
+![](Asset/HauntedJaunt/2025-12-19-22-00-28.png)
+
+- 新建一个脚本 GameEnding.cs
+![](Asset/HauntedJaunt/2025-12-19-22-05-16.png)
+![](Asset/HauntedJaunt/2025-12-19-22-12-30.png)
+![](Asset/HauntedJaunt/2025-12-19-22-16-36.png)
+
+- 结束游戏
+![](Asset/HauntedJaunt/2025-12-19-22-15-28.png)
+
+# 敌人
+## 石像鬼
+### 预制体
+- 拖拽预制件到Hierarchy
+![](Asset/HauntedJaunt/2025-12-19-22-20-13.png)
+
+- 把它拖回自己的预制件文件夹，生成预制件，并进入预制件编辑模式
+![](Asset/HauntedJaunt/2025-12-19-22-21-42.png)
+
+- 创建石像鬼的动画控制器
+![](Asset/HauntedJaunt/2025-12-19-22-23-05.png)
+
+- 将石像鬼的Idle动画拖到动画控制器中，石像鬼是不会移动的，仅需要这个动画即可
+![](Asset/HauntedJaunt/2025-12-19-22-24-12.png)
+
+- 添加到石像鬼的动画师中
+![](Asset/HauntedJaunt/2025-12-19-22-25-45.png)
+
+- 添加一个碰撞体，包裹石像鬼的身体，但不设置触发
+![](Asset/HauntedJaunt/2025-12-19-22-28-05.png)
+
+- 在石像鬼下创建一个空对象，调整位置和旋转角度，模拟它的视角原点
+![](Asset/HauntedJaunt/2025-12-19-22-31-11.png)
+
+- 确保是Local状态
+![](Asset/HauntedJaunt/2025-12-19-22-33-12.png)
+
+- 给视角添加一个碰撞体，设置为触发器，设置尺寸，并选择拉伸方向为Z轴
+![](Asset/HauntedJaunt/2025-12-19-22-35-18.png)
+
+### 脚本
+- 创建脚本，添加到石像鬼预制件的视线对象下
+![](Asset/HauntedJaunt/2025-12-19-22-43-52.png)
+
+- Update()
+![](Asset/HauntedJaunt/2025-12-19-22-45-54.png)
+
+- 在GameEnding中，记得将Image传进来
+![](Asset/HauntedJaunt/2025-12-19-23-00-21.png)
+![](Asset/HauntedJaunt/2025-12-19-22-47-15.png)
+![](Asset/HauntedJaunt/2025-12-19-22-47-56.png)
+![](Asset/HauntedJaunt/2025-12-19-22-48-21.png)
+![](Asset/HauntedJaunt/2025-12-19-22-50-34.png)
+
+## 被抓住的UI
+- 复制结束的部分来修改
+![](Asset/HauntedJaunt/2025-12-19-22-39-32.png)
+![](Asset/HauntedJaunt/2025-12-19-22-40-13.png)
+
+- 另一种方法
+![](Asset/HauntedJaunt/2025-12-19-22-53-43.png)
+![](Asset/HauntedJaunt/2025-12-19-22-54-48.png)
+
+- 要使用Resources.Load，必须创建一个Resources文件夹，并把资源放进去
+![](Asset/HauntedJaunt/2025-12-19-22-56-06.png)
+
+- Update 修改传入的参数
+![](Asset/HauntedJaunt/2025-12-19-22-57-45.png)
+
+![](Asset/HauntedJaunt/2025-12-19-22-58-47.png)
