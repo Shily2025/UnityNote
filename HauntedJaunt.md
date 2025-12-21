@@ -253,6 +253,9 @@
 - 给视角添加一个碰撞体，设置为触发器，设置尺寸，并选择拉伸方向为Z轴
 ![](Asset/HauntedJaunt/2025-12-19-22-35-18.png)
 
+- 将视角对象做成预制体
+![](Asset/HauntedJaunt/2025-12-21-13-05-13.png)
+
 ### 脚本
 - 创建脚本，添加到石像鬼预制件的视线对象下
 ![](Asset/HauntedJaunt/2025-12-19-22-43-52.png)
@@ -283,3 +286,76 @@
 ![](Asset/HauntedJaunt/2025-12-19-22-57-45.png)
 
 ![](Asset/HauntedJaunt/2025-12-19-22-58-47.png)
+
+## 幽灵
+### 预制体
+- 将资源拖到Hierarchy
+![](Asset/HauntedJaunt/2025-12-21-12-56-44.png)
+
+- 创建AnimationController
+![](Asset/HauntedJaunt/2025-12-21-12-58-03.png)
+
+- 加入GhostWalk
+![](Asset/HauntedJaunt/2025-12-21-12-59-17.png)
+
+- 挂到Ghost的Animator下
+![](Asset/HauntedJaunt/2025-12-21-13-00-02.png)
+
+- 添加碰撞体和刚体，为防止被玩家碰撞后被弹开，勾选是运动学的
+![](Asset/HauntedJaunt/2025-12-21-13-12-07.png)
+
+- 添加视角对象，修改参数
+![](Asset/HauntedJaunt/2025-12-21-13-06-47.png)
+
+- 设置视觉检测的参数
+![](Asset/HauntedJaunt/2025-12-21-13-10-26.png)
+
+- 拖到预制件文件夹
+![](Asset/HauntedJaunt/2025-12-21-13-00-57.png)
+
+### 导航网格
+- 加入导航网格代理 Nav Mesh Agent，设置参数
+![](Asset/HauntedJaunt/2025-12-21-13-16-23.png)
+
+- 创建脚本
+![](Asset/HauntedJaunt/2025-12-21-13-17-20.png)
+![](Asset/HauntedJaunt/2025-12-21-13-18-29.png)
+![](Asset/HauntedJaunt/2025-12-21-13-22-13.png)
+
+- 创建两个空对象，作为移动的起始点
+![](Asset/HauntedJaunt/2025-12-21-13-26-36.png)
+
+# 音频
+## 全局音效
+- 创建一个空对象，来存放所有的全局音效（背景、胜利、失败）
+  背景音乐勾选Play On Awake 和 Loop，胜利和失败取消勾选 
+![](Asset/HauntedJaunt/2025-12-21-22-21-38.png)
+
+- 在GameEnding脚本中
+![](Asset/HauntedJaunt/2025-12-21-22-41-39.png)
+
+- 被抓住或者逃脱之后，在EndLevel()中播放
+![](Asset/HauntedJaunt/2025-12-21-22-45-30.png)
+![](Asset/HauntedJaunt/2025-12-21-22-43-45.png)
+
+## 玩家脚步声
+- 给玩家添加AudioSource
+![](Asset/HauntedJaunt/2025-12-21-22-50-05.png)
+
+- 在玩家的移动脚本中
+![](Asset/HauntedJaunt/2025-12-21-22-50-52.png)
+![](Asset/HauntedJaunt/2025-12-21-22-51-20.png)
+![](Asset/HauntedJaunt/2025-12-21-22-55-50.png)
+
+## 敌人音效
+- 给鬼魂挂上音效，设置为3D，调整距离
+![](Asset/HauntedJaunt/2025-12-21-22-59-41.png)
+![](Asset/HauntedJaunt/2025-12-21-23-00-27.png)
+![](Asset/HauntedJaunt/2025-12-21-23-01-48.png)
+
+- 为了使玩家面向屏幕和背对屏幕时，声音的方向都一样，同时，将音源设置的单通道，这样，将无法辨别声音的方向，只能越靠近幽灵声音越大
+![](Asset/HauntedJaunt/2025-12-21-23-05-53.png)
+![](Asset/HauntedJaunt/2025-12-21-23-07-10.png)
+
+## 音频优化
+- 将AudioListener从摄像机放到玩家上
